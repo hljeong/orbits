@@ -163,9 +163,9 @@ class Universe:
             (
                 Circle(self.yellow_p, self.yellow_r),
                 Circle(self.blue_p, self.blue_r),
-                Curve(tuple(self.blue_trail)),
+                # Curve(tuple(self.blue_trail)),
                 Circle(self.white_p, self.white_r),
-                Curve(tuple(self.white_trail)),
+                # Curve(tuple(self.white_trail)),
             )
         )
 
@@ -196,6 +196,9 @@ universe: Universe = Universe()
 
 
 def loop(canvas: Canvas, frame_num: int) -> bool:
+    canvas.o = Vector(
+        canvas.w / 2 - universe.blue_p.x, canvas.h / 2 - universe.blue_p.y
+    )
     canvas.render(universe.scene)
     universe.update()
     return frame_num < MAX_FRAMES
